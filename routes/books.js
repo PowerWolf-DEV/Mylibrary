@@ -19,6 +19,7 @@ router.get('/', async (req, res) => {
   try {
     const books = await query.exec()
     res.render('books/index', {
+      title: 'Books',
       books: books,
       searchOptions: req.query
     })
@@ -55,7 +56,10 @@ router.post('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
   try {
     const book = await Book.findById(req.params.id).populate('author').exec()
-    res.render('books/show', { book: book })
+    res.render('books/show', { 
+      title: 'Info About Book',
+      book: book 
+    })
   } catch (err) {
     res.redirect('/')
   }
@@ -125,7 +129,14 @@ async function renderEditPage(res, book, hasError = false) {
 async function renderFormPage(res, book, form, hasError = false) {
   try {
     const authors = await Author.find({})
+    let title
+    if (form === 'new') {
+      title = 'Add New Book' 
+    } else {
+      title = 'Edit Book'
+    }
     const params = {
+      title: title,
       authors: authors,
       book: book
     }

@@ -12,6 +12,7 @@ router.get('/', async (req, res) => {
   try {
     const authors = await Author.find(searchOptions)
     res.render('authors/index', { 
+      title: 'Authors',
       authors: authors,
       searchOptions: req.query
     })
@@ -22,7 +23,10 @@ router.get('/', async (req, res) => {
 
 // New Author Route
 router.get('/new', (req, res) => {
-  res.render('authors/new', { author: new Author()})
+  res.render('authors/new', { 
+    author: new Author(),
+    title: 'New Author'
+  })
 })
 
 // Create Author Route
@@ -35,6 +39,7 @@ router.post('/', async (req, res) => {
     res.redirect(`authors/${newAuthor.id}`)
   } catch (err) {
     res.render('authors/new', {
+      title: 'Error',
       author: author,
       errorMessage: 'Error creating author'
     })
@@ -47,6 +52,7 @@ router.get('/:id', async (req, res) => {
     const author = await Author.findById(req.params.id)
     const books = await Book.find({ author: author.id }).limit(6).exec()
     res.render('authors/show', {
+      title: 'Author Info',
       author: author,
       booksByAuthor: books
     })
@@ -59,7 +65,10 @@ router.get('/:id', async (req, res) => {
 router.get('/:id/edit', async (req, res) => {
   try {
     const author = await Author.findById(req.params.id)
-    res.render('authors/edit', { author: author})
+    res.render('authors/edit', { 
+      title: 'Edit Author Info',
+      author: author
+    })
   } catch (err) {
     res.redirect('/authors')
   }
