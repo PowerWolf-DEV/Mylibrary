@@ -17,6 +17,7 @@ function ready() {
   )
   
   FilePond.setOptions({
+    credits: false,
     stylePanelAspectRatio: 1 / coverAspectRatio,
     imageResizeTargetWidth: coverWidth,
     imageResizeTargetHeight: coverHeight
