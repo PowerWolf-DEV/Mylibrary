@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const bcrypt = require('bcrypt')
 const passport = require('passport')
-const {checkAuthenticated, checkNotAuthenticated} = require('../middleware/checkAuth') // can use to check authentication
+const { checkNotAuthenticated } = require('../middleware/checkAuth')
 
 const User = require('../models/user')
 const initializePassport = require('../middleware/passport-config')
@@ -13,7 +13,7 @@ router.get('/login', checkNotAuthenticated, (req, res) => {
 })
 
 router.post('/login', checkNotAuthenticated, passport.authenticate('local', { 
-  successRedirect: '/',
+  successRedirect: '/profile',
   failureRedirect: '/auth/login', 
   failureFlash: true
 }))

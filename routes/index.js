@@ -1,9 +1,8 @@
 const express = require('express')
 const router = express.Router()
 const Book = require('../models/book')
-const { checkAuthenticated } = require('../middleware/checkAuth')
 
-router.get('/', checkAuthenticated, async (req, res) => {
+router.get('/', async (req, res) => {
   let books
   try {
     books = await Book.find().sort({ createdAt: 'desc' }).limit(10).exec()
@@ -12,7 +11,6 @@ router.get('/', checkAuthenticated, async (req, res) => {
   }
   res.render('index', { 
     books: books,
-    name: req.user.name,
     title: 'Mybrary'
   })
 })

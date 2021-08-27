@@ -15,6 +15,7 @@ const authorRouter = require('./routes/authors')
 const bookRouter = require('./routes/books')
 const authRouter = require('./routes/auth')
 const errorHandler = require('./middleware/error')
+const profileRouter = require('./routes/profile')
 
 app.set('view engine', 'ejs')
 app.set('views', __dirname + '/views')
@@ -43,6 +44,7 @@ app.use('/', indexRouter)
 app.use('/authors', authorRouter)
 app.use('/books', bookRouter)
 app.use('/auth', authRouter)
+app.use('/profile', profileRouter)
 
 app.use(errorHandler)
 
