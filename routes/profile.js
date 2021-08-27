@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const { checkAuthenticated } = require('../middleware/checkAuth')
+const { checkAuthenticated } = require('../middleware/checkauth')
 
 router.get('/', checkAuthenticated, (req, res) => {
   res.render('profile', {
