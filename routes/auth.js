@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const bcrypt = require('bcrypt')
 const passport = require('passport')
-const { checkNotAuthenticated } = require('../middleware/checkAuth')
+const { checkNotAuthenticated } = require('../middleware/checkauth')
 
 const User = require('../models/user')
 const initializePassport = require('../middleware/passport-config')

@@ -1,6 +1,8 @@
 const { body } = require('express-validator')
 const User = require('../models/user')
 
+// validators is not working and i'll figure out what is the problem :)
+
 exports.registerValidators = [
   body('email')
     .isEmail().withMessage('Enter the valid email')
