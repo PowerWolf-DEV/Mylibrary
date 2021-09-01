@@ -1,8 +1,6 @@
 const { body } = require('express-validator')
 const User = require('../models/user')
 
-// validators is not working and i'll figure out what is the problem :)
-
 exports.registerValidators = [
   body('email')
     .isEmail().withMessage('Enter the valid email')
@@ -25,14 +23,4 @@ exports.registerValidators = [
     .isLength({min: 3})
     .withMessage('Name must be at least 3 symbols')
     .trim()
-]
-
-exports.loginValidators = [
-  body('email')
-    .isEmail().withMessage('Enter the valid email')
-    .normalizeEmail(),
-  body('password', 'Password must be at least 6 symbols')
-    .isLength({min:6, max:20})
-    .isAlphanumeric()
-    .trim(),
 ]
